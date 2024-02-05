@@ -1,0 +1,6 @@
+@extratinhos.api_HostAddress = http://localhost:5047
+
+GET {{extratinhos.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
