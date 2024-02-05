@@ -19,14 +19,14 @@ namespace extratinhos.Datasource.Mappers
 				.IsRequired();
 
 			builder.Property(c => c.CreatedAt)
-				.HasColumnType("datetime")
-				.ValueGeneratedOnAdd()
-				.IsRequired();
+				.HasColumnType("timestamp")
+                .HasDefaultValueSql("now()")
+                .IsRequired();
 
-			builder.Property(c => c.UpdatedAt)
-				.HasColumnType("datetime")
-				.ValueGeneratedOnAddOrUpdate()
-				.IsRequired();
-		}
+            builder.Property(c => c.UpdatedAt)
+				.HasColumnType("timestamp")
+                .HasDefaultValueSql("now()")
+                .IsRequired();
+        }
 	}
 }

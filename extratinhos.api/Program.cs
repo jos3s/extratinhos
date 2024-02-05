@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnectionString"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("extratinhos"));
 });
 
 
