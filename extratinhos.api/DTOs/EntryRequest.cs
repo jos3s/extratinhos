@@ -14,6 +14,6 @@ namespace extratinhos.DTOs
 		public string Type { get; set; }
 
 		[JsonPropertyName("descricao")]
-		public string Descrition { get; set; }
+		public string Description { get; set; }
 	}
 }
