@@ -10,6 +10,8 @@ namespace extratinhos.Datasource
 
 		public DbSet<Entry> Entries { get; set; }
 
+		public DbSet<Balance> Balances { get; set; }
+
 		public AppDbContext(DbContextOptions options) : base(options)
 		{
 		}
@@ -18,6 +20,7 @@ namespace extratinhos.Datasource
 		{
 			modelBuilder.ApplyConfiguration(new EntryMap());
 			modelBuilder.ApplyConfiguration(new ClientMap());
+			modelBuilder.ApplyConfiguration(new BalanceMap());
 
 			modelBuilder.Entity<Client>()
 				.HasData(
