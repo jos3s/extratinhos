@@ -19,13 +19,13 @@ namespace extratinhos.Datasource.Mappers
 				.HasColumnType("text");
 
 			builder.Property(e => e.CreatedAt)
-				.HasColumnType("datetime")
-				.ValueGeneratedOnAdd()
+				.HasColumnType("timestamp")
+				.HasDefaultValueSql("now()")
 				.IsRequired();
 
 			builder.Property(e => e.UpdatedAt)
-				.HasColumnType("datetime")
-				.ValueGeneratedOnAddOrUpdate()
+				.HasColumnType("timestamp")
+				.HasDefaultValueSql("now()")
 				.IsRequired();
 
 			builder.HasOne(e => e.Client)

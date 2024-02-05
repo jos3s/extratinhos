@@ -17,16 +17,16 @@ namespace extratinhos.Datasource.Mappers
 				.IsRequired();
 
 			builder.Property(b => b.CreatedAt)
-				.HasColumnType("datetime")
-				.ValueGeneratedOnAdd()
-				.IsRequired();
+				.HasColumnType("timestamp")
+                .HasDefaultValueSql("now()")
+                .IsRequired();
 
-			builder.Property(b => b.UpdatedAt)
-				.HasColumnType("datetime")
-				.ValueGeneratedOnAddOrUpdate()
-				.IsRequired();
+            builder.Property(b => b.UpdatedAt)
+				.HasColumnType("timestamp")
+                .HasDefaultValueSql("now()")
+                .IsRequired();
 
-			builder.HasOne(b => b.Client)
+            builder.HasOne(b => b.Client)
 				.WithOne(c => c.Balance)
 				.HasForeignKey<Balance>(b=> b.ClientId)
 				.IsRequired();
