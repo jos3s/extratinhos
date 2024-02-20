@@ -1,4 +1,7 @@
-﻿using extratinhos.Datasource;
+﻿using extratinhos.api.DTOs;
+using extratinhos.api.Service;
+using extratinhos.Datasource;
+using extratinhos.DTOs;
 using extratinhos.Entitys;
 
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +14,7 @@ namespace extratinhos.api.Controllers
     public class ClientsController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly EntryService entryService;
 
         public ClientsController(AppDbContext context)
         {
@@ -72,12 +76,11 @@ namespace extratinhos.api.Controllers
         // POST: api/Clients
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Client>> PostClient(Client client)
+        public async Task<ActionResult<Client>> PostClient(ClientRequest client)
         {
-            _context.Clients.Add(client);
-            await _context.SaveChangesAsync();
+            new EntryService(_context).insertClient(client);
 
-            return CreatedAtAction("GetClient", new { id = client.Id }, client);
+            return CreatedAtAction("GetClient",  client);
         }
 
         // DELETE: api/Clients/5
@@ -99,6 +102,14 @@ namespace extratinhos.api.Controllers
         private bool ClientExists(long id)
         {
             return _context.Clients.Any(e => e.Id == id);
+        }
+
+        [HttpPost("{id:long}/trasacoes")]
+        public Task<ActionResult<Entry>> PostEntry(EntryRequest entry, long id)
+        {
+            entryService.insertEntry(entry, id);
+
+            return Task.FromResult<ActionResult<Entry>>(CreatedAtAction("InsertEntry", entry));
         }
     }
 }

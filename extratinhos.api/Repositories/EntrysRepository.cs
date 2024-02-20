@@ -7,7 +7,7 @@ namespace extratinhos.api.Repositories;
 
 public class EntrysRepository : IRepository<Entry>
 {
-    private readonly AppDbContext _context;
+    private AppDbContext _context;
 
     public EntrysRepository(AppDbContext context)
     {
